@@ -156,7 +156,7 @@ db.<collection_name>.deleteMany({})
 
 # Objetos y Matrices dentro de documentos
 
-### objetos
+### Objetos
 
 - Los registros pueden tener objetos como registros
 
