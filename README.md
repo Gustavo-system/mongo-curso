@@ -1,24 +1,36 @@
-## mostrar bases de datos existentes
+# Base de datos MONGO
+
+#### Mostrar bases de datos
 ```
 show databases;
 ```
 
-## crear / usar una base de datos
+# Colecciones
+
+#### Crear / usar una base de datos
+- cuando se usa el comando **use** se crea la base de datos pero no se mostrara con el comando anterior hasta que se cree una coleccion.
 ```
-use <name-database>;
+use <name-database>
 ```
 
-## crear una coleccion
+#### Crear una coleccion
 ```
 db.createCollection("nombre_de_la_colección", opciones);
 ```
 
-## mostar colecciones
+#### Mostar colecciones
 ```
-show collections;
+show collections
 ```
 
-## insertar un registro
+### Eliminar colecciones
+```
+db.<collection_name>.drop()
+```
+
+# Registros
+
+### Insertar un registro
 ```
 db.<collection_name>.insertOne(
 	{
@@ -28,7 +40,7 @@ db.<collection_name>.insertOne(
 )
 ```
 
-## insertar varios registros en una coleccion
+### Insertar varios registros en una coleccion
 - Se debe tener en consideracion que se deben agregar por medio de una matriz utilizando "[ ]"
 ```
 db.<collection_name>.insertMany([
@@ -43,7 +55,7 @@ db.<collection_name>.insertMany([
 ])
 ```
 
-## consultar todos los registros de una coleccion
+### Consultar todos los registros de una coleccion
 - podemos utilizar .pretty() para que regrese los datos con un formato identando
 ```
 db.<collection_name>.find()
@@ -55,7 +67,7 @@ db.<collection_name>.find().pretty()
 	- .toArray() muestra todos los registros en una matriz
 	- .forEach((valor) => {printjson(valor)}) esto nos permite recorrer uno por uno de los registros y mostrar todos
 
-## consultar los registros de una coleccion con filtros
+### Consultar los registros de una coleccion con filtros
 - cuando se agrega un objeto dentro del .find() se interpreta como un filtro
 ```
 db.<collection_name>.find({"llave":"valor"})
@@ -72,7 +84,7 @@ db.usuarios.find({edad: {$gt:25} })
 ```
 - Nota: si se utilizan los filtros con el .findOne() regresa siempre el primer registro que encuentre y cumpla con la condicion
 
-## consultar los registros con proyeccion
+### Consultar los registros con proyeccion
 - se utliza para mostrar solo la informacion que se desee
 - el primer valor siempre se coloca en "{ }" ahi se indica que se busque en todos los registros
 - el "_id" siempre se incluye a expecion que se indique de forma explicita "{ _id:0 } "
@@ -83,7 +95,7 @@ db.usuarios.find({edad: {$gt:25} })
 db.<collection_name>.find({}, { "llave": 1 })
 ```
 
-## actualizar un registro
+### Actualizar un registro
 - para utilizar el updateOne() se debe proporcionar un valor por el cual se realizara el filtrado
 ```
 // sintaxis
@@ -106,7 +118,7 @@ db.usuarios.update({_id:"12345"}, { edad:30 })
 db.usuarios.replaceOne({_id:"12345"}, { "nombre":"chanchito", edad:30, "esSocio": "true"})
 ```
 
-## actualizar varios registros
+### Actualizar varios registros
 ```
 // se puede colocar el primer parametros en vacio para que se aplique a todos los registros
 db.<collection_name>.updateMany({}, {$set:{<argumentos>}})
@@ -114,7 +126,7 @@ db.<collection_name>.updateMany({}, {$set:{<argumentos>}})
 db.<collection_name>.updateMany({}, {$set:{"llave":"valor"}})
 ```
 
-## eliminar un registro
+### Eliminar un registro
 ```
 db.<collection_name>.deleteOne(<opciones>)
 
@@ -125,7 +137,7 @@ db.<collection_name>.deleteOne({"llave":"valor"})
 db.usuarios.deleteOne({"nombre":"chanchito"})
 ```
 
-## eliminar varios registros
+### Eliminar varios registros
 1) se eliminan varios registros cuando se tenga algo en comun 
 ```
 db.<collection_name>.deleteMany(<opciones>)
@@ -137,7 +149,7 @@ db.<collection_name>.deleteMany({"llave":"valor"})
 db.<collection_name>.deleteMany({})
 ```
 
-## Documentos dentro de documentos
+# Documentos dentro de documentos
 
 - Los registros pueden tener objetos como registros
 
@@ -158,7 +170,7 @@ db.<collection_name>.deleteMany({})
 }
 ```
 
-## Matrices dentro de documentos
+### Matrices dentro de documentos
 
 ```
 {
@@ -190,7 +202,7 @@ db.<collection_name>.deleteMany({})
 }
 ```
 
-## accediendo a los datos estructurados
+### Accediendo a los datos estructurados
 1) Nos retorna solo una parte de la coleccion
 ```
 // sintaxis
