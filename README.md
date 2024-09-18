@@ -154,7 +154,9 @@ db.<collection_name>.deleteMany({"llave":"valor"})
 db.<collection_name>.deleteMany({})
 ```
 
-# Documentos dentro de documentos
+# Objetos y Matrices dentro de documentos
+
+### objetos
 
 - Los registros pueden tener objetos como registros
 
@@ -175,7 +177,9 @@ db.<collection_name>.deleteMany({})
 }
 ```
 
-### Matrices dentro de documentos
+### Matrices
+
+- Los registros pueden tener matrices como registros
 
 ```
 {
