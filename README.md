@@ -3,7 +3,7 @@
 show databases;
 ```
 
-## crear/usar una base de datos
+## crear / usar una base de datos
 ```
 use <name-database>;
 ```
@@ -43,13 +43,17 @@ db.<collection_name>.insertMany([
 ])
 ```
 
-## consultar los registros de una coleccion
-1) podemos utilizar .pretty() para que regrese los datos con un formato identando
+## consultar todos los registros de una coleccion
+- podemos utilizar .pretty() para que regrese los datos con un formato identando
 ```
 db.<collection_name>.find()
 
 db.<collection_name>.find().pretty()
 ```
+
+- NOTA: en la shell solo podemos visualizar de 20 en 20 registros, podemos usar alternativas como:
+	- .toArray() muestra todos los registros en una matriz
+	- .forEach((valor) => {printjson(valor)}) esto nos permite recorrer uno por uno de los registros y mostrar todos
 
 ## consultar los registros de una coleccion con filtros
 - cuando se agrega un objeto dentro del .find() se interpreta como un filtro
@@ -63,16 +67,34 @@ db.<collection_name>.find({"llave":"valor"})
 ```
 db.<collection_name>.find({"llave": {$<operador>:"valor"} })
 
-//ejemplo, obtenemos todos los registros de la coleccion de usuarios donde la edad sea mayor a 25 años
+//ejemplo: obtenemos todos los registros de la coleccion de usuarios donde la edad sea mayor a 25 años
 db.usuarios.find({edad: {$gt:25} })
 ```
 - Nota: si se utilizan los filtros con el .findOne() regresa siempre el primer registro que encuentre y cumpla con la condicion
 
-## actualizar un registro
-```
-db.<collection_name>.updateOne({<where>}, {$set:{<argumentos>}})
+## consultar los registros con proyeccion
 
+## actualizar un registro
+- para utilizar el updateOne() se debe proporcionar un valor por el cual se realizara el filtrado
+```
+// sintaxis
+db.<collection_name>.updateOne({<where>}, {$set:{<argumentos>}})
 db.<collection_name>.updateOne({"llave":"valor"}, {$set:{"llave":"valor"}})
+
+// ejemplo: actualizar la edad de un usuario
+db.usuarios.updateOne({_id:"12345"}, {$set: { edad:30 } })
+```
+- podemos utilizar .update() pero de igual forma especificar un valor por el cual podamos filtrar el registro
+```
+db.usuarios.update({_id:"12345"}, {$set: { edad:30 } })
+```
+- NOTA: si se utiliza el update sin el operador "$set" se eliminaran los datos de la coleccion y persistira la llave-valor indicada
+```
+db.usuarios.update({_id:"12345"}, { edad:30 })
+```
+- NOTA: si se quiere remplazar todos los datos de un registro podemos usar .replaceOne()
+```
+db.usuarios.replaceOne({_id:"12345"}, { "nombre":"chanchito", edad:30, "esSocio": "true"})
 ```
 
 ## actualizar varios registros
