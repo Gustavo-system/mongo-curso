@@ -3,12 +3,10 @@
 show databases;
 ```
 
-
 ## crear/usar una base de datos
 ```
 use <name-database>;
 ```
-
 
 ## crear una coleccion
 ```
@@ -45,7 +43,6 @@ db.<collection_name>.insertMany([
 ])
 ```
 
-
 ## consultar los registros de una coleccion
 1) podemos utilizar .pretty() para que regrese los datos con un formato identando
 ```
@@ -53,6 +50,23 @@ db.<collection_name>.find()
 
 db.<collection_name>.find().pretty()
 ```
+
+## consultar los registros de una coleccion con filtros
+- cuando se agrega un objeto dentro del .find() se interpreta como un filtro
+```
+db.<collection_name>.find({"llave":"valor"})
+```
+- utilizando operadores especiales para filtros mas complejos
+	- gt: Greater Than -> mayor que
+	- 
+
+```
+db.<collection_name>.find({"llave": {$<operador>:"valor"} })
+
+//ejemplo, obtenemos todos los registros de la coleccion de usuarios donde la edad sea mayor a 25 años
+db.usuarios.find({edad: {$gt:25} })
+```
+- Nota: si se utilizan los filtros con el .findOne() regresa siempre el primer registro que encuentre y cumpla con la condicion
 
 ## actualizar un registro
 ```
