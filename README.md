@@ -137,4 +137,78 @@ db.<collection_name>.deleteMany({"llave":"valor"})
 db.<collection_name>.deleteMany({})
 ```
 
+## Documentos dentro de documentos
 
+- Los registros pueden tener objetos como registros
+
+```
+{
+    "_id": ObjectId("6478db6f8d9e8f271d4718e1"),
+    "nombre": "Teléfono Móvil X",
+    "precio": 199.99,
+    "descripcion": "El mejor teléfono del mercado",
+    "detalles": {
+        "marca": "XYZ",
+        "modelo": "X10",
+        "color": "Negro"
+		"autor": {
+			"nombre": "chanchito"
+		}
+    }
+}
+```
+
+## Matrices dentro de documentos
+
+```
+{
+    "_id": ObjectId("6478db6f8d9e8f271d4718e1"),
+    "nombre": "Teléfono Móvil X",
+    "precio": 199.99,
+    "descripcion": "El mejor teléfono del mercado",
+    "detalles": {
+        "marca": "XYZ",
+        "modelo": "X10",
+        "color": "Negro"
+    },
+    "comentarios": [
+        {
+            "usuario": "Juan Pérez",
+            "fecha": "2024-05-20T10:23:34Z",
+            "texto": "Excelente producto"
+        },
+        {
+            "usuario": "Ana García",
+            "fecha": "2024-05-21T15:45:12Z",
+            "texto": "La batería dura poco"
+        }
+    ],
+	"numeros": [
+		"2222222222",
+		"0000000000"
+	]
+}
+```
+
+## accediendo a los datos estructurados
+1) Nos retorna solo una parte de la coleccion
+```
+// sintaxis
+db.<collection_name>.findOne({"llave":"valor"}).<nodo>
+
+// ejemplo
+db.usuarios.findOne({_id:ObjectId("6478db6f8d9e8f271d4718e1")}).numeros
+
+// resultado del ejemplo
+[ "2222222222", "0000000000" ]
+```
+
+2) filtrando por medio de un campo dentro de la estructura
+- Se debe tomar en cuenta que si es necesario agregar **""** en el filtro para que se pueda utilizar el **( . )** y acceder a los nodos
+```
+// sintaxis
+db.<collection_name>.findOne({"llave.llave.llave":"valor"})
+
+// ejemplo
+db.usuarios.findOne({"detalles.color":"Negro"})
+```
