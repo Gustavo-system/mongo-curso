@@ -73,6 +73,15 @@ db.usuarios.find({edad: {$gt:25} })
 - Nota: si se utilizan los filtros con el .findOne() regresa siempre el primer registro que encuentre y cumpla con la condicion
 
 ## consultar los registros con proyeccion
+- se utliza para mostrar solo la informacion que se desee
+- el primer valor siempre se coloca en "{ }" ahi se indica que se busque en todos los registros
+- el "_id" siempre se incluye a expecion que se indique de forma explicita "{ _id:0 } "
+- se utliza por medio de 1 y 0
+	- 1: si se muestra
+	- 0: no se muestra
+```
+db.<collection_name>.find({}, { "llave": 1 })
+```
 
 ## actualizar un registro
 - para utilizar el updateOne() se debe proporcionar un valor por el cual se realizara el filtrado
