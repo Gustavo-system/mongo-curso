@@ -2,7 +2,12 @@
 
 #### Mostrar bases de datos
 ```
-show databases;
+show databases
+```
+
+### Eliminar la bases de datos
+```
+db.dropDatabase()
 ```
 
 # Colecciones
