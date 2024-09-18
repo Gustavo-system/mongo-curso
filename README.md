@@ -170,9 +170,9 @@ db.<collection_name>.deleteMany({})
         "marca": "XYZ",
         "modelo": "X10",
         "color": "Negro"
-		"autor": {
-			"nombre": "chanchito"
-		}
+        "autor": {
+            "nombre": "chanchito"
+        }
     }
 }
 ```
@@ -184,30 +184,30 @@ db.<collection_name>.deleteMany({})
 ```
 {
     "_id": ObjectId("6478db6f8d9e8f271d4718e1"),
-    "nombre": "Teléfono Móvil X",
-    "precio": 199.99,
-    "descripcion": "El mejor teléfono del mercado",
-    "detalles": {
-        "marca": "XYZ",
-        "modelo": "X10",
-        "color": "Negro"
+    "nombre":"Teléfono Móvil X",
+    "precio":199.99,
+    "descripcion":"El mejor teléfono del mercado",
+    "detalles":{
+        "marca":"XYZ",
+        "modelo":"X10",
+        "color":"Negro"
     },
-    "comentarios": [
+    "comentarios":[
         {
-            "usuario": "Juan Pérez",
-            "fecha": "2024-05-20T10:23:34Z",
-            "texto": "Excelente producto"
+            "usuario":"Juan Pérez",
+            "fecha":"2024-05-20T10:23:34Z",
+            "texto":"Excelente producto"
         },
         {
-            "usuario": "Ana García",
-            "fecha": "2024-05-21T15:45:12Z",
-            "texto": "La batería dura poco"
+            "usuario":"Ana García",
+            "fecha":"2024-05-21T15:45:12Z",
+            "texto":"La batería dura poco"
         }
     ],
-	"numeros": [
-		"2222222222",
-		"0000000000"
-	]
+    "numeros":[
+        "2222222222",
+        "0000000000"
+    ]
 }
 ```
 
