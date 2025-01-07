@@ -79,7 +79,6 @@ db.<collection_name>.find({"llave":"valor"})
 ```
 - utilizando operadores especiales para filtros mas complejos
 	- gt: Greater Than -> mayor que
-	- 
 
 ```
 db.<collection_name>.find({"llave": {$<operador>:"valor"} })
@@ -233,3 +232,80 @@ db.<collection_name>.findOne({"llave.llave.llave":"valor"})
 // ejemplo
 db.usuarios.findOne({"detalles.color":"Negro"})
 ```
+
+# Tipos de datos Mongo
+- Texto: "Juan"
+- Booelan: true
+- Numero
+	- NumberInt (int32): 25
+	- NumberLong (Int64): 2090845886852
+	- NumberDecimal (Int128): 1000.55
+- ObjectId: ObjectId("123")
+- Fecha
+	- ISODate: ISODate("2022-10-10)
+	- Timestamp: Timestamp(123213123, 1)
+- Documento Incrustado: {"name": "valor"}
+- Array (Matriz): {"name": [ "valor ]}
+
+Obtener el tipo de dato de un valor 
+```
+typeof db.<nameColection>.find().<llave>
+
+typeof db.usuarios.find().edad
+-> number
+```
+
+# Relaciones
+
+### Relacion uno a uno - incrustado
+La relacion se realiza dentro del documento en este caso el objeto historial tiene la relacion dentro del documento
+```
+{
+	"_id" : ObjectId("5fb31271267317831h123"),
+	"nombre" : "Juan",
+	"edad" : 25,
+	"historial" : {
+		"enfermedades" : [
+			"gripe",
+			"tos"
+		]
+	}
+}
+```
+
+### Relacion uno a uno - referencia
+La relacion se hara por medio del _id que se encuentra en otro documento, este _id puede ser personalizado o por medio del ObjectId
+
+Cuando la relacion es por referencia, al modificar los datos de un documento que se usa como relacion se modifica el valor a todos los que tengan ensertado ese registro
+
+```
+Coleccion de vehiculos
+{
+	"_id" : "VW1",
+	"modelo" : "Jetta",
+	"marca" : "VW",
+	"precio" : 2500
+}
+
+Coleccion de personas
+{
+	"_id" : ObjectId("5fb31271267317831h123"),
+	"nombre" : "Juan",
+	"edad" : 25,
+	"vehiculo" : "VW1"
+},
+{
+	"_id" : ObjectId("5fb3123123u53831h123"),
+	"nombre" : "Pedro",
+	"edad" : 40,
+	"vehiculo" : "VW1"
+}
+```
+
+### Relacion uno a muchos - incrustado
+
+### Relacion uno a muchos - referencia
+
+### Relacion muchos a muchos - incrustado
+
+### Relacion muchos a muchos - referencia
